@@ -1,0 +1,36 @@
+{
+  "__version__": "1.0.1",
+  "general": {
+    "designResolution": {
+      "width": 720,
+      "height": 1280
+    }
+  },
+  "physics": {
+    "collisionGroups": [
+      {
+        "index": 1,
+        "name": "wall"
+      },
+      {
+        "index": 2,
+        "name": "ball"
+      },
+      {
+        "index": 3,
+        "name": "brick"
+      },
+      {
+        "index": 4,
+        "name": "board"
+      }
+    ],
+    "collisionMatrix": {
+      "0": 0,
+      "1": 4,
+      "2": 26,
+      "3": 4,
+      "4": 4
+    }
+  }
+}

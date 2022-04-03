@@ -1,0 +1,8 @@
+syntax="proto3";
+package com.iohao.game.collect.proto;
+option java_outer_classname = "LoginVerify$$ByJProtobuf";
+//登录验证
+message LoginVerify {  
+// jwt
+ string jwt=1;
+}
