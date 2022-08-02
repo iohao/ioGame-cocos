@@ -8,9 +8,17 @@ export default class SendMgr {
 
   public static LoginVerify(data: LoginVerify = null) {
     data = {
-      jwt: "test"
+      age : 273676,
+      jwt: "test",
+      loginBizCode : 1
     }
+
+    console.log("登录1",data);
+
     let msg: Uint8Array = encodeLoginVerify(data);
+    
+    console.log("登录2",msg);
+
     this.send(CmdMgr.getMergeCmd(LoginVerifyCmd, LoginVerifySubCmd), msg);
     // SocketClient.ins.send(LoginVerifyCmd, LoginVerifySubCmd, msg)
   }

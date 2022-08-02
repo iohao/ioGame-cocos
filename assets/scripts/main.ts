@@ -5,6 +5,7 @@ import { decodeNested, encodeNested, Nested } from './net/protocol/test';
 import SocketClient from './net/socket/SocketClient';
 import CommonUtils from './utils/CommonUtils';
 import LogUtils from './utils/LogUtils';
+import SendMgr from './mgr/SendMgr';
 const { ccclass, property } = _decorator;
 
 /**
@@ -54,6 +55,13 @@ export default class main {
     private constructor() {
         RegisterMgr.ins.registCmd();
         SocketClient.ins.connect();
+
+        console.log("登录1~~");
+
+        setTimeout(function() {
+            SendMgr.LoginVerify();
+        }, 2000);
+
     }
 }
 

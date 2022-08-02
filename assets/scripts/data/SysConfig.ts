@@ -15,7 +15,7 @@ const { ccclass, property } = _decorator;
  */
 
 export class SysConfig {
-    public static wsUrl: string = "ws://127.0.0.1:10088/websocket"; // "ws://82.157.123.54:9010/ajaxchattest";
+    public static wsUrl: string = "ws://127.0.0.1:10100/websocket"; // "ws://82.157.123.54:9010/ajaxchattest";
 }
 
 /**

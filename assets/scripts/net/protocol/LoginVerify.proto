@@ -3,6 +3,10 @@ package com.iohao.game.collect.proto;
 option java_outer_classname = "LoginVerify$$ByJProtobuf";
 //登录验证
 message LoginVerify {  
-// jwt
- string jwt=1;
+  // age
+  sint32 age = 1;
+  // jwt
+  string jwt = 2;
+  // 登录业务码
+  sint32 loginBizCode = 3;
 }

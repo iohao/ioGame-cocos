@@ -1,5 +1,7 @@
 export interface LoginVerify {
+  age?: number;
   jwt?: string;
+  loginBizCode?: number;
 }
 
 export function encodeLoginVerify(message: LoginVerify): Uint8Array {
@@ -9,11 +11,25 @@ export function encodeLoginVerify(message: LoginVerify): Uint8Array {
 }
 
 function _encodeLoginVerify(message: LoginVerify, bb: ByteBuffer): void {
-  // optional string jwt = 1;
+  // optional sint32 age = 1;
+  let $age = message.age;
+  if ($age !== undefined) {
+    writeVarint32(bb, 8);
+    writeVarint32ZigZag(bb, $age);
+  }
+
+  // optional string jwt = 2;
   let $jwt = message.jwt;
   if ($jwt !== undefined) {
-    writeVarint32(bb, 10);
+    writeVarint32(bb, 18);
     writeString(bb, $jwt);
+  }
+
+  // optional sint32 loginBizCode = 3;
+  let $loginBizCode = message.loginBizCode;
+  if ($loginBizCode !== undefined) {
+    writeVarint32(bb, 24);
+    writeVarint32ZigZag(bb, $loginBizCode);
   }
 }
 
@@ -31,9 +47,21 @@ function _decodeLoginVerify(bb: ByteBuffer): LoginVerify {
       case 0:
         break end_of_message;
 
-      // optional string jwt = 1;
+      // optional sint32 age = 1;
       case 1: {
+        message.age = readVarint32ZigZag(bb);
+        break;
+      }
+
+      // optional string jwt = 2;
+      case 2: {
         message.jwt = readString(bb, readVarint32(bb));
+        break;
+      }
+
+      // optional sint32 loginBizCode = 3;
+      case 3: {
+        message.loginBizCode = readVarint32ZigZag(bb);
         break;
       }
 

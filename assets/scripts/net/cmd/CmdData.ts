@@ -6,5 +6,5 @@ export enum HallCmdData {
     LOGIN
 }
 
-export const LoginVerifyCmd: number = 1;
+export const LoginVerifyCmd: number = 3;
 export const LoginVerifySubCmd: number = 1;
