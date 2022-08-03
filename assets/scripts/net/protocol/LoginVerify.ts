@@ -11,11 +11,11 @@ export function encodeLoginVerify(message: LoginVerify): Uint8Array {
 }
 
 function _encodeLoginVerify(message: LoginVerify, bb: ByteBuffer): void {
-  // optional sint32 age = 1;
+  // optional int32 age = 1;
   let $age = message.age;
   if ($age !== undefined) {
     writeVarint32(bb, 8);
-    writeVarint32ZigZag(bb, $age);
+    writeVarint64(bb, intToLong($age));
   }
 
   // optional string jwt = 2;
@@ -25,11 +25,11 @@ function _encodeLoginVerify(message: LoginVerify, bb: ByteBuffer): void {
     writeString(bb, $jwt);
   }
 
-  // optional sint32 loginBizCode = 3;
+  // optional int32 loginBizCode = 3;
   let $loginBizCode = message.loginBizCode;
   if ($loginBizCode !== undefined) {
     writeVarint32(bb, 24);
-    writeVarint32ZigZag(bb, $loginBizCode);
+    writeVarint64(bb, intToLong($loginBizCode));
   }
 }
 
@@ -47,9 +47,9 @@ function _decodeLoginVerify(bb: ByteBuffer): LoginVerify {
       case 0:
         break end_of_message;
 
-      // optional sint32 age = 1;
+      // optional int32 age = 1;
       case 1: {
-        message.age = readVarint32ZigZag(bb);
+        message.age = readVarint32(bb);
         break;
       }
 
@@ -59,9 +59,9 @@ function _decodeLoginVerify(bb: ByteBuffer): LoginVerify {
         break;
       }
 
-      // optional sint32 loginBizCode = 3;
+      // optional int32 loginBizCode = 3;
       case 3: {
-        message.loginBizCode = readVarint32ZigZag(bb);
+        message.loginBizCode = readVarint32(bb);
         break;
       }
 

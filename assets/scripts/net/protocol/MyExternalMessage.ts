@@ -14,25 +14,25 @@ export function encodeMyExternalMessage(message: MyExternalMessage): Uint8Array 
 }
 
 function _encodeMyExternalMessage(message: MyExternalMessage, bb: ByteBuffer): void {
-  // optional sint32 cmdCode = 1;
+  // optional int32 cmdCode = 1;
   let $cmdCode = message.cmdCode;
   if ($cmdCode !== undefined) {
     writeVarint32(bb, 8);
-    writeVarint32ZigZag(bb, $cmdCode);
+    writeVarint64(bb, intToLong($cmdCode));
   }
 
-  // optional sint32 protocolSwitch = 2;
+  // optional int32 protocolSwitch = 2;
   let $protocolSwitch = message.protocolSwitch;
   if ($protocolSwitch !== undefined) {
     writeVarint32(bb, 16);
-    writeVarint32ZigZag(bb, $protocolSwitch);
+    writeVarint64(bb, intToLong($protocolSwitch));
   }
 
-  // optional sint32 cmdMerge = 3;
+  // optional int32 cmdMerge = 3;
   let $cmdMerge = message.cmdMerge;
   if ($cmdMerge !== undefined) {
     writeVarint32(bb, 24);
-    writeVarint32ZigZag(bb, $cmdMerge);
+    writeVarint64(bb, intToLong($cmdMerge));
   }
 
   // optional sint32 responseStatus = 4;
@@ -71,21 +71,21 @@ function _decodeMyExternalMessage(bb: ByteBuffer): MyExternalMessage {
       case 0:
         break end_of_message;
 
-      // optional sint32 cmdCode = 1;
+      // optional int32 cmdCode = 1;
       case 1: {
-        message.cmdCode = readVarint32ZigZag(bb);
+        message.cmdCode = readVarint32(bb);
         break;
       }
 
-      // optional sint32 protocolSwitch = 2;
+      // optional int32 protocolSwitch = 2;
       case 2: {
-        message.protocolSwitch = readVarint32ZigZag(bb);
+        message.protocolSwitch = readVarint32(bb);
         break;
       }
 
-      // optional sint32 cmdMerge = 3;
+      // optional int32 cmdMerge = 3;
       case 3: {
-        message.cmdMerge = readVarint32ZigZag(bb);
+        message.cmdMerge = readVarint32(bb);
         break;
       }
 
