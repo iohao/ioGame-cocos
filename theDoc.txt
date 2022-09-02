@@ -1,9 +1,0 @@
-协议编译安装命令：
-npm install -g pbjs
-
-# 进入协议目录
-cd assets/scripts/net/protocol
-
-
-# 编译协议文件
-pbjs MyExternalMessage.proto --ts MyExternalMessage.ts
