@@ -2,6 +2,8 @@ export interface LoginVerify {
   age?: number;
   jwt?: string;
   loginBizCode?: number;
+  time?: Long;
+  time2?: Long;
 }
 
 export function encodeLoginVerify(message: LoginVerify): Uint8Array {
@@ -30,6 +32,20 @@ function _encodeLoginVerify(message: LoginVerify, bb: ByteBuffer): void {
   if ($loginBizCode !== undefined) {
     writeVarint32(bb, 24);
     writeVarint64(bb, intToLong($loginBizCode));
+  }
+
+  // optional int64 time = 4;
+  let $time = message.time;
+  if ($time !== undefined) {
+    writeVarint32(bb, 32);
+    writeVarint64(bb, $time);
+  }
+
+  // optional int64 time2 = 5;
+  let $time2 = message.time2;
+  if ($time2 !== undefined) {
+    writeVarint32(bb, 40);
+    writeVarint64(bb, $time2);
   }
 }
 
@@ -62,6 +78,18 @@ function _decodeLoginVerify(bb: ByteBuffer): LoginVerify {
       // optional int32 loginBizCode = 3;
       case 3: {
         message.loginBizCode = readVarint32(bb);
+        break;
+      }
+
+      // optional int64 time = 4;
+      case 4: {
+        message.time = readVarint64(bb, /* unsigned */ false);
+        break;
+      }
+
+      // optional int64 time2 = 5;
+      case 5: {
+        message.time2 = readVarint64(bb, /* unsigned */ false);
         break;
       }
 

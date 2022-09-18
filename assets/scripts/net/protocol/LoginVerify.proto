@@ -2,11 +2,15 @@ syntax="proto3";
 package com.iohao.game.collect.proto;
 option java_outer_classname = "LoginVerify$$ByJProtobuf";
 //登录验证
-message LoginVerify {  
-  // age
+message LoginVerify {
+  // age 测试用的,Integer
   int32 age = 1;
   // jwt
   string jwt = 2;
   // 登录业务码
   int32 loginBizCode = 3;
+  // Long value
+  int64 time = 4;
+  // long value
+  int64 time2 = 5;
 }
